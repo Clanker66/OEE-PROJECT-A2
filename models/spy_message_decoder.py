@@ -1,24 +1,3 @@
-"""
-Standing Wave Spy Decoder — v3
-==============================
-Fixes
------
-• Demodulated-signal bug: lowpass cutoff was fc×0.6, which is BELOW the FSK
-  tone frequencies when fc is low (e.g. fc=2000 Hz → cutoff=1200 Hz, but 'e'
-  tone = 1000 Hz is fine while 'z' = 5200 Hz gets cut).  Fix: cutoff is now
-  max(tone_max × 1.5, 800) regardless of fc, and the demodulator removes the
-  2fc image via a fixed cutoff of  min(max_tone × 1.5, FS/2 × 0.9).
-• Independent per-character normalisation hid amplitude changes in RX plot.
-  Now all characters share a common scale derived from the actual amplitude.
-• Geometry panel: correct law-of-reflection diagram (angle of incidence =
-  angle of reflection, both measured from the wall normal; wavefronts drawn).
-
-New features
-------------
-• Precise numeric entry field next to every slider (click → type → Enter).
-• Caesar cipher: shift slider + cipher map table + encrypted/decrypted display.
-• Geometry panel redrawn with proper normal, equal angles, wavefronts.
-"""
 
 import tkinter as tk
 from tkinter import ttk
